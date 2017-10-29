@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+	AngularJS Tables
+</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src= "angular.min.js"></script>
+    <script src= "myUsers.js"></script>
+        <style>
+            table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+            }
+    
+            table tr:nth-child(odd) {
+            background-color: #FFCCCC;
+            }
+            table tr:nth-child(even) {
+            background-color: white;
+            }
+        </style>
+    </head>
+        <body ng-app="myApp" ng-controller="userCtrl">
+            <div class="w3-container">
+                <h1>Student List</h1>
+                Search: <input type="text" placeholder="Search Student" ng-model="user.name">
+                <br><br>
+                Select a student:
+                <select ng-model="selectedStudent">
+                <option ng-repeat="x in users" value="{{x.evaluation}}">{{x.name}}</option>
+                </select>
+
+                <h3>Student Evaluation: {{selectedStudent}}</h3>
+                <table class="w3-table w3-bordered w3-striped">
+                <tr>
+                    <th>Roll No.</th>
+                    <th>Student Name</th>
+                    <th>Marks</th>
+                    <th>Grades</th>
+                    <th>Level</th>
+                    <th>Major</th>
+                </tr>
+                <tr ng-repeat="user in users | filter:user">
+                    <td>{{ $index + 1 }}</td> 
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.marks }}</td>
+                    <td>{{ user.grades }}</td>
+                    <td>{{ user.level }}</td>
+                    <td>{{ user.major }}</td>
+                </tr>
+                </table>
+                <br>
+                    <button class="w3-btn w3-pink w3-ripple" ng-click="editUser()">Create New User</button>
+
+                    <form ng-hide="hideform" class="well" ng-submit="saveChange()">
+                    <h3>Create New Student</h3>
+                    <label>Student Name:</label>
+                    <input class="w3-input w3-border" type="text" ng-model="name" ng-disabled="edit" placeholder="Name">
+                    <br>
+                    <label>Marks:</label>
+                    <input class="w3-input w3-border" type="text" ng-model="marks" ng-disabled="edit" placeholder="Mark">
+                    <br>
+                    <label>Grades:</label>
+                    <input class="w3-input w3-border" type="text" ng-model="grades"  ng-disabled="edit" placeholder="Grade">
+                    <br>
+                    <label>Level:</label>
+                    <input class="w3-input w3-border" type="text" ng-model="level"  ng-disabled="edit" placeholder="Level">
+                    <br>
+                    <label>Major:</label>
+                    <input class="w3-input w3-border" type="text" ng-model="major"  ng-disabled="edit" placeholder="Major">
+                    <br>
+                    <label>Evaluation:</label>
+                    <input class="w3-input w3-border" type="text" ng-model="evaluation"  ng-disabled="edit" placeholder="Evaluation">
+                    <br>
+                    <button class="w3-btn w3-pink w3-ripple" type="submit"> Save Change</button>
+                    </form>
+                    
+                </div>
+        </body>
+</html>
