@@ -36,6 +36,6 @@ angular.module('myApp', []).controller('userCtrl', function($scope) {
         };
     
         $scope.saveChange = function() {
-        $scope.users.push( {name:$scope.name, marks:$scope.marks, grades:$scope.grades, level:$scope.level, major:$scope.major} );
+        $scope.users.push( {name:$scope.name, marks:$scope.marks, grades:$scope.grades, level:$scope.level, major:$scope.major, evaluation:$scope.evaluation} );
     };
 });
